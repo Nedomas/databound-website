@@ -1,0 +1,6 @@
+[submodule "databound"]
+	path = databound
+	url = git@github.com:Nedomas/databound.git
+[submodule "public/databound"]
+	path = public/databound
+	url = git@github.com:Nedomas/databound.git

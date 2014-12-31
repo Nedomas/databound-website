@@ -1,0 +1,37 @@
+{
+  "name": "databound",
+  "version": "0.1.0",
+  "authors": [
+    "Domas <domas.bitvinskas@me.com>"
+  ],
+  "description": "Exposes database ORM to the Javascript side. Backend part gem included",
+  "main": "dist/databound.js",
+  "dependencies": {
+    "lodash": "2.4.1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "queries",
+    "rest",
+    "rails",
+    "backend"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/Nedomas/databound",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0",
+    "commit": "729e074745dd15234cefe01cd51170d36aaf1b0e"
+  },
+  "_source": "git://github.com/Nedomas/databound.git",
+  "_target": "~0.1.0",
+  "_originalSource": "databound",
+  "_direct": true
+}

@@ -1,0 +1,57 @@
+.row
+  .col-md-8.col-md-offset-2
+    .header
+      .logo
+      .description.text-center
+        span.brand Databound
+        span
+          |  exposes database ORM to the Javascript
+          |  and works out of the box with Ruby on Rails, ActiveRecord and Mongoid.
+
+.row
+  .showoff
+    .row
+      .container-fluid
+        .col-md-6.col-md-offset-1
+          #editor-part
+
+            ul.nav.nav-pills
+              li.active role='presentation'
+                a href='#' JavaScript
+              li role='presentation'
+                a href='#' Gemfile
+              li role='presentation'
+                a href='#' routes.rb
+              li role='presentation'
+                button.btn.btn-lg.btn-danger#run
+                  span.glyphicon.glyphicon-play aria-hidden='true'
+                  |  Run
+
+            .editor#js
+            .editor#gemfile
+            .editor#routes
+        .col-md-1.spacer.no-gutter
+        .col-md-4
+          pre
+            #browser
+
+.row
+  .content
+    .container
+      // download standalong
+      // download npm
+      // download sprockets
+      p There are a few lines that exist in the backend here.
+      p In Gemfile:
+      p gem 'databound'
+      p In routes.rb:
+      p databound :users
+
+.row
+  .content
+    h2.text-center
+      | Launch MVP in a day
+      p
+        | Write
+        a href='http://handlebarsjs.com'  Handlebars
+        |  as if the supporting code is already there

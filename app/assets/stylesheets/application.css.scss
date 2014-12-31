@@ -1,0 +1,133 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,700,600,800,400);
+
+$bg: #e8e8e8;
+$main: #e54025;
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  /* background-color: $bg; */
+}
+
+.header {
+  .logo {
+    background: url('logobig.png') center no-repeat;
+    background-size: 400px;
+    height: 200px;
+  }
+
+  .description {
+    font-size: 1.3em;
+    padding-bottom: 3em;
+
+    .brand {
+      color: $main;
+    }
+  }
+}
+
+.showoff {
+  .editor, #browser {
+    height: 450px;
+    width: 100%;
+  }
+
+  .spacer {
+    height: 475px;
+    background: url('spacer-0.8.png') top center repeat-y;
+    background-size: 4px 1px;
+    width: 2em;
+  }
+
+  #browser {
+    font-size: 13px;
+  }
+}
+
+.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.nav-pills li.active a {
+  color: #000;
+  background-color: inherit;
+}
+
+.splash {
+  margin: 40px 0;
+  padding: 60px 0;
+  color: #fff;
+  background-color: #1ab0c7;
+
+  h1 {
+    font-size: 48px;
+    font-weight: 300;
+
+    small {
+      color: white;
+      font-size: 32px;
+      font-weight: 300;
+      font-style: italic;
+    }
+  }
+
+  .showoff {
+    #editor, #browser {
+      height: 450px;
+      width: 100%;
+    }
+
+    #browser html {
+      transform: scale(.75);
+    }
+  }
+}
+
+.content, .install {
+  margin-bottom: 40px;
+
+  h2 {
+    font-size: 32px;
+    font-weight: 300;
+
+    p {
+      padding: 30px;
+      font-size: 18px;
+      font-weight: 300;
+    }
+  }
+}
+
+.install {
+  .code {
+    padding: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+
+    input {
+      cursor: text;
+    }
+  }
+}
+
+.footer {
+  height: 100px;
+}
