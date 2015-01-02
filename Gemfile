@@ -28,7 +28,7 @@ gem 'spring',        group: :development
 
 gem 'slim'
 gem 'twitter-bootstrap-rails'
-gem 'databound', path: '/home/domas/Developer/databound-rails'
+gem 'databound', github: 'Nedomas/databound-rails'
 gem 'pry'
 gem 'pry-stack_explorer'
 gem 'browserify-rails'

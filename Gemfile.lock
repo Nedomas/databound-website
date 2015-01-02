@@ -1,5 +1,6 @@
-PATH
-  remote: /home/domas/Developer/databound-rails
+GIT
+  remote: git://github.com/Nedomas/databound-rails.git
+  revision: bc69fce456f9640bdfff78848674ca24c9a2b468
   specs:
     databound (0.2.1)
 
