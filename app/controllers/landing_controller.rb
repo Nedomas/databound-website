@@ -3,7 +3,7 @@ class LandingController < ApplicationController
   end
 
   def initial_code
-    code = render_to_string('landing/initial_code', layout: false)
+    code = render_to_string("landing/initial_#{params[:file]}", layout: false)
 
     respond_to do |format|
       format.html { render plain: code }

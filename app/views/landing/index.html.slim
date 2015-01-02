@@ -10,48 +10,236 @@
 
 .row
   .showoff
-    .row
-      .container-fluid
-        .col-md-6.col-md-offset-1
-          #editor-part
+    .col-md-6.col-md-offset-1
+      #editor-part
+        div role="tabpanel"
+          /! Nav tabs
+          ul.nav.nav-tabs role="tablist"
+            li.active role="presentation"
+              a aria-controls="javascript-tab" data-toggle="tab" href="#javascript-tab" role="tab" JavaScript
+            li role="presentation"
+              a aria-controls="gemfile-tab" data-toggle="tab" href="#gemfile-tab" role="tab" Gemfile
+            li role="presentation"
+              a aria-controls="routes-tab" data-toggle="tab" href="#routes-tab" role="tab" config/routes.rb
+            .run-area.text-right
+              button.btn.btn-danger#run
+                span.glyphicon.glyphicon-play aria-hidden='true'
+                |  Run Javascript
 
-            ul.nav.nav-pills
-              li.active role='presentation'
-                a href='#' JavaScript
-              li role='presentation'
-                a href='#' Gemfile
-              li role='presentation'
-                a href='#' routes.rb
-              li role='presentation'
-                button.btn.btn-lg.btn-danger#run
-                  span.glyphicon.glyphicon-play aria-hidden='true'
-                  |  Run
+          /! Tab panes
+          .tab-content
+            #javascript-tab.tab-pane.active role="tabpanel"
+              .editor#javascript
+            #gemfile-tab.tab-pane role="tabpanel"
+              .editor#gemfile
+            #routes-tab.tab-pane role="tabpanel"
+              .editor#routes
 
-            .editor#js
-            .editor#gemfile
-            .editor#routes
-        .col-md-1.spacer.no-gutter
-        .col-md-4
-          pre
-            #browser
+    .col-md-1.spacer.no-gutter
+    .col-md-4
+      pre
+        #browser
 
 .row
   .content
     .container
-      // download standalong
-      // download npm
-      // download sprockets
-      p There are a few lines that exist in the backend here.
-      p In Gemfile:
-      p gem 'databound'
-      p In routes.rb:
-      p databound :users
+      .col-md-10.col-md-offset-1.text-center
+        a.btn.btn-danger.install href='#'
+          | INSTALL DATABOUND
 
-.row
+.row.used-by
   .content
-    h2.text-center
-      | Launch MVP in a day
-      p
-        | Write
-        a href='http://handlebarsjs.com'  Handlebars
-        |  as if the supporting code is already there
+    .container
+      h2.text-center
+        | Used by
+      .col-md-offset-3.col-md-3.text-right
+        .samesystem.logo
+      .col-md-3.text-left
+        .spacepicnic.logo
+
+.row.features.dark
+  .container
+    .col-md-offset-2
+      .row.text-center
+        h2 API
+      .row
+        .col-md-2
+          h3 where
+        .col-md-7
+          pre
+            | User.where({ name: 'John' }).then(function(users) {
+            br
+            |  print('You are called John');
+            br
+            | });
+
+      .row.example
+        .col-md-2
+          h3 find
+        .col-md-7
+          pre
+            | User.find(15).then(function(user) {
+            br
+            |  print('User no. 15: ' + user.name);
+            br
+            | });
+
+      .row.example
+        .col-md-2
+          h3 findBy
+        .col-md-7
+          pre
+            | User.findBy({ name: 'Peter' }).then(function(user) {
+            br
+            |  print('Peter from ' + user.city);
+            br
+            | });
+
+      .row.example
+        .col-md-2
+          h3 create
+        .col-md-7
+          pre
+            | User.create({ name: 'Peter' }).then(function(user) {
+            br
+            |  print('I am ' + user.name + ' from database');
+            br
+            | });
+
+      .row.example
+        .col-md-2
+          h3 update
+        .col-md-7
+          pre
+            | User.update({ id: 15, name: 'Nikki' }).then(function(user) {
+            br
+            |  // I'm not Peter anymore, I'm Nikki
+            br
+            |  print("I'm not Peter anymore, I'm " + user.name);
+            br
+            | });
+
+      .row.example
+        .col-md-2
+          h3 destroy
+        .col-md-7
+          pre
+            | User.destroy({ id: 15 }).then(function(resp) {
+            br
+            |  if (resp.success) print('User no. 15 is now gone');
+            br
+            | });
+
+      .row
+        .col-md-9.col-md-offset-1.text-center
+          a.btn.btn-danger.more-api href='http://nedomas.github.io/databound/src/databound.html' target='_blank'
+            | More API docs
+
+.row.installation
+  .container
+    .col-md-offset-2.col-md-8
+      .row
+        h2 Installation
+      .row
+        #accordion.panel-group aria-multiselectable="true" role="tablist"
+          .panel.panel-default
+            #headingOne.panel-heading role="tab"
+              h4.panel-title
+                a aria-controls="collapseOne" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#collapseOne"
+                  | With asset pipeline (sprockets)
+            #collapseOne.panel-collapse.collapse.in aria-labelledby="headingOne" role="tabpanel"
+              .panel-body
+                .step
+                  h4
+                    span.label.label-danger 1
+                    span.text  Gemfile
+                  pre
+                    | gem 'databound', '0.2.1'
+
+                .step
+                  h4
+                    span.label.label-danger 2
+                    span.text  Run generator to add Databound to <code>application.js</code>
+                  pre
+                    | rails g databound:install
+
+                .step
+                  h4
+                    span.label.label-danger 3
+                    span.text  Add a route to <code>config/routes.rb</code>
+                  pre
+                    | Rails.application.routes.draw do
+                    br
+                    |   databound :users
+                    br
+                    | end
+
+                .step
+                  h4
+                    span.label.label-danger 4 - optional
+                    span.text
+                      |  Controller is autogenerated from route
+                  p But if you already have a controller, you can include Databound and specify the model yourself.
+                  pre
+                    | class UsersController < ApplicationController
+                    br
+                    |   include Databound
+                    br
+                    br
+                    |   def model
+                    br
+                    |     User
+                    br
+                    |   end
+                    br
+                    | end
+
+                .step
+                  h4
+                    span.label.label-danger 5
+                    span.text
+                      |  Use it in the Javascript
+                  pre
+                    | var User = new Databound('/users')
+
+          .panel.panel-info
+            #headingTwo.panel-heading role="tab"
+              h4.panel-title
+                a.collapsed aria-controls="collapseTwo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo"
+                  | Without asset pipeline
+            #collapseTwo.panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel"
+              .panel-body
+                dl
+                  dt Gemfile
+                  dd
+                    pre
+                      | gem 'databound', '0.2.1'
+
+                  dt Download the <a href='#'><code>databound-standalone.js</code></a> and require it in your Javascript.
+                  dd
+                    pre
+                      = "<script src='assets/databound-standalone.js'></script>"
+          .panel.panel-info
+            #headingThree.panel-heading role="tab"
+              h4.panel-title
+                a.collapsed aria-controls="collapseThree" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseThree"
+                  | With require.js
+            #collapseThree.panel-collapse.collapse aria-labelledby="headingThree" role="tabpanel"
+              .panel-body
+                dl
+                  dt Download via <code>npm</code>
+                  dd
+                    pre
+                      | npm install databound
+
+                dl
+                  dt Download via <code>bower</code>
+                  dd
+                    pre
+                      | bower install databound
+
+                dl
+                  dt Use it
+                  dd
+                    pre
+                      | var Databound = require('databound');

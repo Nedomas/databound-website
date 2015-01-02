@@ -18,34 +18,57 @@
 
 App = (->
   init = ->
-    # initEditor()
-    # bindEditor()
+    initEditors()
+    bindRun()
 
-  initEditor = ->
-    editor().setTheme('ace/theme/github')
-    editor().getSession().setMode('ace/mode/javascript')
-    editor().setFontSize(16)
-    editor().setShowPrintMargin(false)
-    editor().setShowFoldWidgets(false)
-    editor().setShowInvisibles(false)
-    editor().renderer.setShowGutter(false)
+  initEditors = ->
+    _.each editors(), (editor, file) ->
+      setDefaults(editor)
+      customize(editor, file)
 
-    $.get('landing/initial_code').then (resp) ->
-      editor().setValue(resp, 1)
-      renderBrowser()
+  setDefaults = (editor) ->
+    editor.setTheme('ace/theme/github')
+    editor.setFontSize(16)
+    editor.setShowPrintMargin(false)
+    editor.setShowFoldWidgets(false)
+    editor.setShowInvisibles(false)
+    editor.renderer.setShowGutter(false)
 
-  editor = ->
-    window.ace.edit('editor')
+  SYNTAX_TYPES = {
+    javascript: 'javascript',
+    gemfile: 'ruby',
+    routes: 'ruby'
+  }
 
-  renderBrowser = ->
+  customize = (editor, file) ->
+    editor.getSession().setMode("ace/mode/#{SYNTAX_TYPES[file]}")
+
+    $.get("landing/initial_code", file: file).then((resp) ->
+      editor.setValue(resp, 1)
+    ).then ->
+      if file == 'javascript'
+        run()
+
+      if _.include(['gemfile', 'routes'], file)
+        editor.setReadOnly(true)
+
+  editors = ->
+    result = {}
+
+    _.each ['javascript', 'gemfile', 'routes'], (file) ->
+      result[file] = window.ace.edit(file)
+
+    result
+
+  run   = ->
     cleanBrowser()
-    eval(editor().getValue())
+    eval(editors()['javascript'].getValue())
 
   cleanBrowser = ->
     browser().html('')
 
-  bindEditor = ->
-    $('#run-editor').on('click', renderBrowser)
+  bindRun = ->
+    $('#run').on('click', run)
 
   return {
     init: init

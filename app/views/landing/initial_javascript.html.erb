@@ -7,8 +7,6 @@
 %>
 var User = new Databound('/users');
 
-// tabs
-// generator :install
 User.create({ name: '<%= Faker::Name.first_name %>' }).then(function(new_user) {
   print('I am ' + new_user.name + ' from database');
 });

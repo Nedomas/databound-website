@@ -16,6 +16,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,700,600,800,400);
 
 $bg: #e8e8e8;
+$dark-bg: #282929;
 $main: #e54025;
 
 body {
@@ -56,6 +57,110 @@ body {
   #browser {
     font-size: 13px;
   }
+
+  .tab-content {
+    padding-top: 1em;
+  }
+
+  .run-area {
+    width: 100%;
+  }
+}
+
+.install {
+  font-size: 1.7em;
+  margin-top: .5em;
+  padding: .5em 1.5em;
+}
+
+.btn-danger {
+  background-color: $main;
+}
+
+.used-by {
+  padding-top: 3em;
+
+  h2 {
+    font-size: 2.5em;
+    padding-bottom: 1em;
+  }
+
+  .samesystem {
+    background: url('samesystem_logo.jpg') right no-repeat;
+    margin-top: -.3em;
+  }
+
+  .spacepicnic {
+    background: url('spacepicnic.png') left no-repeat;
+  }
+
+  .logo {
+    background-size: contain;
+    height: 75px;
+    width: 250px;
+  }
+}
+
+.dark {
+  background-color: $dark-bg;
+  color: #fff;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.features {
+  border-top: 15px solid $main;
+  margin-top: 5em;
+
+  h2 {
+    font-size: 2.8em;
+  }
+
+  h3 {
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+  }
+
+  .example {
+    margin-top: 1em;
+  }
+
+  .more-api {
+    font-size: 1.5em;
+    margin: 1.5em;
+    padding: .5em 1em;
+  }
+
+}
+
+.installation {
+  padding-bottom: 3.5em;
+  padding-top: 2em;
+
+  h2 {
+    padding-bottom: .3em;
+  }
+
+  .step {
+    padding-bottom: .7em;
+
+    h4 {
+      padding-bottom: .3em;
+
+      .text {
+        padding: .5em 0 0 .4em;
+      }
+    }
+  }
+
+  dd {
+    padding: 1em;
+  }
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 600;
+  padding-bottom: 1em;
 }
 
 .no-gutter {
@@ -65,69 +170,7 @@ body {
   padding-right: 0;
 }
 
-.nav-pills li.active a {
-  color: #000;
-  background-color: inherit;
-}
-
-.splash {
-  margin: 40px 0;
-  padding: 60px 0;
-  color: #fff;
-  background-color: #1ab0c7;
-
-  h1 {
-    font-size: 48px;
-    font-weight: 300;
-
-    small {
-      color: white;
-      font-size: 32px;
-      font-weight: 300;
-      font-style: italic;
-    }
-  }
-
-  .showoff {
-    #editor, #browser {
-      height: 450px;
-      width: 100%;
-    }
-
-    #browser html {
-      transform: scale(.75);
-    }
-  }
-}
-
-.content, .install {
-  margin-bottom: 40px;
-
-  h2 {
-    font-size: 32px;
-    font-weight: 300;
-
-    p {
-      padding: 30px;
-      font-size: 18px;
-      font-weight: 300;
-    }
-  }
-}
-
-.install {
-  .code {
-    padding: 50px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-
-    input {
-      cursor: text;
-    }
-  }
-}
-
 .footer {
+  background-color: $dark-bg;
   height: 100px;
 }
