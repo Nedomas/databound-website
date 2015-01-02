@@ -26,7 +26,7 @@ body {
 
 .header {
   .logo {
-    background: url('logobig.png') center no-repeat;
+    background: url("<%= asset_path('logobig.png') %>") center no-repeat;
     background-size: 400px;
     height: 150px;
   }
@@ -51,7 +51,7 @@ body {
 
   .spacer {
     height: 475px;
-    background: url('spacer-0.8.png') top center repeat-y;
+    background: url("<%= asset_path('spacer-0.8.png') %>") top center repeat-y;
     background-size: 4px 1px;
     width: 2em;
   }
@@ -88,12 +88,12 @@ body {
   }
 
   .samesystem {
-    background: url('samesystem_logo.jpg') right no-repeat;
+    background: url("<%= asset_path('samesystem_logo.jpg') %>") right no-repeat;
     margin-top: -.3em;
   }
 
   .spacepicnic {
-    background: url('spacepicnic.png') left no-repeat;
+    background: url("<%= asset_path('spacepicnic.png') %>") left no-repeat;
   }
 
   .logo {
