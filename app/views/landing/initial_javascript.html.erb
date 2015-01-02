@@ -7,12 +7,12 @@
 %>
 var User = new Databound('/users');
 
-User.create({ name: '<%= Faker::Name.first_name %>' }).then(function(new_user) {
-  print('I am ' + new_user.name + ' from database');
+User.find(<%= User.last.id %>).then(function(user) {
+  print('Yo, ' + user.name);
 });
 
-User.find(<%= User.last.id + 1 %>).then(function(user) {
-  print('Yo, ' + user.name);
+User.create({ name: '<%= Faker::Name.first_name %>' }).then(function(new_user) {
+  print('I am ' + new_user.name + ' from database');
 });
 
 User.where({ city: '<%= @city %>' }).then(function(users) {

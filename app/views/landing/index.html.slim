@@ -1,4 +1,11 @@
 .row
+  .container
+    .fork.text-right
+      a.btn.btn-default href='#'
+        span.glyphicon.glyphicon-star
+        | Fork on Github
+
+.row
   .col-md-8.col-md-offset-2
     .header
       .logo
@@ -44,96 +51,252 @@
   .content
     .container
       .col-md-10.col-md-offset-1.text-center
-        a.btn.btn-danger.install href='#'
-          | INSTALL DATABOUND
+        p
+          a.btn.btn-danger.install href='#'
+            | Install Databound
 
 .row.used-by
   .content
     .container
       h2.text-center
         | Used by
-      .col-md-offset-3.col-md-3.text-right
-        .samesystem.logo
-      .col-md-3.text-left
-        .spacepicnic.logo
+      .row
+        .col-md-offset-3.col-md-3.text-right
+          .samesystem.logo
+        .col-md-3.text-left
+          .spacepicnic.logo
+
+.row.api.dark
+  .container
+    .row.text-center
+      h2 API
+    .row.example
+      .col-md-offset-1.col-md-3.text-right
+        h3 where
+      .col-md-5
+        pre
+          | User.where({ name: 'John' }).then(function(users) {
+          br
+          |  print('You are called John');
+          br
+          | });
+
+    .row.example
+      .col-md-offset-1.col-md-3.text-right
+        h3 find
+      .col-md-5
+        pre
+          | User.find(15).then(function(user) {
+          br
+          |  print('User no. 15: ' + user.name);
+          br
+          | });
+
+    .row.example
+      .col-md-offset-1.col-md-3.text-right
+        h3 findBy
+      .col-md-5
+        pre
+          | User.findBy({ name: 'Peter' }).then(function(user) {
+          br
+          |  print('Peter from ' + user.city);
+          br
+          | });
+
+    .row.example
+      .col-md-offset-1.col-md-3.text-right
+        h3 create
+      .col-md-5
+        pre
+          | User.create({ name: 'Peter' }).then(function(user) {
+          br
+          |  print('I am ' + user.name + ' from database');
+          br
+          | });
+
+    .row.example
+      .col-md-offset-1.col-md-3.text-right
+        h3 update
+      .col-md-5
+        pre
+          | User.update({ id: 15, name: 'Nikki' }).then(function(user) {
+          br
+          |  // I'm not Peter anymore, I'm Nikki
+          br
+          |  print("I'm not Peter anymore, I'm " + user.name);
+          br
+          | });
+
+    .row.example
+      .col-md-offset-1.col-md-3.text-right
+        h3 destroy
+      .col-md-5
+        pre
+          | User.destroy({ id: 15 }).then(function(resp) {
+          br
+          |  if (resp.success) print('User no. 15 is now gone');
+          br
+          | });
+
+    .row
+      .col-md-10.col-md-offset-1.text-center
+        a.btn.btn-danger.more-api href='http://nedomas.github.io/databound/src/databound.html' target='_blank'
+          | More API docs
 
 .row.features.dark
   .container
-    .col-md-offset-2
+    .row.text-center
+      h2 Features
+
+    .row.example
+      .col-md-offset-2.col-md-3.text-left
+        h3 Scope
+        p
+          | You can specify <strong>default attributes</strong> that will be
+          |  inserted on every query to the backend.
+        p
+          | It helps to keep the code dry, because most of the time you know some
+          |  model attributes when you define a connection.
+
+      .col-md-5
+        pre
+          | User = new Databound('/users', { city: 'Miami' });
+
+            User.create(name: 'Nikki').then(function(user) {
+              // Miami
+              print(user.city);
+            });
+
+    .row.example
+      .col-md-offset-2.col-md-3.text-left
+        h3 DSL
+        p
+          | You can setup <span class='brand'>Databound</span> to treat certain Javascript side input
+          |  values as DSL.
+        p
+          strong
+            | <code>strict</code> setting:
+        p
+          | set <code>false</code> to make both dsl values and other values
+          | valid.
+      .col-md-5
+        strong Javascript
+        pre
+          | User = new Databound('/users', { city: 'hottest' });
+          br
+          br
+          | User.create(name: 'Vikki').then(function(new_user) {
+          br
+          |   // Vikki is from Miami
+          br
+          |   alert(new_user.name + ' is from ' + new_user.city);
+          br
+          | });
+
+        strong app/controllers/users_controller.rb
+        pre
+          | class UsersController < ApplicationController
+          br
+          |   include Databound
+          br
+          br
+          |   private
+          br
+          br
+          |   def model
+          br
+          |     User
+          br
+          |   end
+          br
+          br
+          |   dsl(:city, :hottest) do
+          br
+          |     'Miami'
+          br
+          |   end
+          br
+          br
+          |   dsl(:city, :hottest, strict: false) do |params|
+          br
+          |     'Miami'
+          br
+          |   end
+          br
+          | end
+
+    .row.example
+      .col-md-offset-2.col-md-3.text-left
+        h3 Extra where scopes
+        p
+          | You can default connection attribute values if you are constantly repeating them.
+        p
+          strong
+            | They are only used when selecting and not when creating.
+      .col-md-5
+        pre
+          | var User = new Databound('/users',
+              { city: 'Miami' },
+              { extra_where_scopes: [{ city: 'New york' }] }
+            );
+
+            User.create(name: 'Nikki').then(function() {
+              // ['Miami', 'New york']
+              print(User.takeAll());
+            });
+
+    .row.example
+      .col-md-offset-2.col-md-3.text-left
+        h3 Permitted columns
+        p
+          | By default the permitted columns are all the columns in the
+          |  database table.
+        p
+          strong
+            | It will raise an error if other column is requested.
+        p
+          | All columns are allowed if <code>:all</code> is specified.
+        p
+          | It can be used with DSL to convert non-existing field into another.
+        p
+          | ActiveRecord and Mongoid supported.
+
+      .col-md-5
+        pre
+          | class UsersController < ApplicationController
+              include Databound
+
+              private
+
+              def model
+                User
+              end
+
+              def pemitted_columns
+                [:name, :email]
+              end
+            end
+
+.row.support
+  .container
+    .col-md-offset-2.col-md-8
       .row.text-center
-        h2 API
+        h2 Version support and dependencies
       .row
-        .col-md-2
-          h3 where
-        .col-md-7
-          pre
-            | User.where({ name: 'John' }).then(function(users) {
-            br
-            |  print('You are called John');
-            br
-            | });
+        .lead
+          p
+            strong Works with:
+          p Ruby on Rails <span class="label label-default">3+</span>
+          p Ruby <span class="label label-default">2.0+</span>
+          p ActiveRecord or Mongoid
 
-      .row.example
-        .col-md-2
-          h3 find
-        .col-md-7
-          pre
-            | User.find(15).then(function(user) {
-            br
-            |  print('User no. 15: ' + user.name);
-            br
-            | });
-
-      .row.example
-        .col-md-2
-          h3 findBy
-        .col-md-7
-          pre
-            | User.findBy({ name: 'Peter' }).then(function(user) {
-            br
-            |  print('Peter from ' + user.city);
-            br
-            | });
-
-      .row.example
-        .col-md-2
-          h3 create
-        .col-md-7
-          pre
-            | User.create({ name: 'Peter' }).then(function(user) {
-            br
-            |  print('I am ' + user.name + ' from database');
-            br
-            | });
-
-      .row.example
-        .col-md-2
-          h3 update
-        .col-md-7
-          pre
-            | User.update({ id: 15, name: 'Nikki' }).then(function(user) {
-            br
-            |  // I'm not Peter anymore, I'm Nikki
-            br
-            |  print("I'm not Peter anymore, I'm " + user.name);
-            br
-            | });
-
-      .row.example
-        .col-md-2
-          h3 destroy
-        .col-md-7
-          pre
-            | User.destroy({ id: 15 }).then(function(resp) {
-            br
-            |  if (resp.success) print('User no. 15 is now gone');
-            br
-            | });
-
-      .row
-        .col-md-9.col-md-offset-1.text-center
-          a.btn.btn-danger.more-api href='http://nedomas.github.io/databound/src/databound.html' target='_blank'
-            | More API docs
+          p
+            strong Depends on:
+          p
+            | Lodash
+            small
+              em
+                |  <span class="label label-default">(should work with any version)</span>
 
 .row.installation
   .container
@@ -200,46 +363,129 @@
                     span.text
                       |  Use it in the Javascript
                   pre
-                    | var User = new Databound('/users')
+                    | var User = new Databound('/users');
 
-          .panel.panel-info
+          .panel.panel-default
             #headingTwo.panel-heading role="tab"
               h4.panel-title
                 a.collapsed aria-controls="collapseTwo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo"
                   | Without asset pipeline
             #collapseTwo.panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel"
               .panel-body
-                dl
-                  dt Gemfile
-                  dd
-                    pre
-                      | gem 'databound', '0.2.1'
+                .step
+                  h4
+                    span.label.label-danger 1
+                    span.text  Gemfile
+                  pre
+                    | gem 'databound', '0.2.1'
 
-                  dt Download the <a href='#'><code>databound-standalone.js</code></a> and require it in your Javascript.
-                  dd
-                    pre
-                      = "<script src='assets/databound-standalone.js'></script>"
-          .panel.panel-info
+                .step
+                  h4
+                    span.label.label-danger 2
+                    span.text  Download the <a href='#'><code>databound-standalone.js</code></a> and load it up
+                  pre
+                    = "<script src='assets/databound-standalone.js'></script>"
+
+                .step
+                  h4
+                    span.label.label-danger 3
+                    span.text  Add a route to <code>config/routes.rb</code>
+                  pre
+                    | Rails.application.routes.draw do
+                    br
+                    |   databound :users
+                    br
+                    | end
+
+                .step
+                  h4
+                    span.label.label-danger 4 - optional
+                    span.text
+                      |  Controller is autogenerated from route
+                  p But if you already have a controller, you can include Databound and specify the model yourself.
+                  pre
+                    | class UsersController < ApplicationController
+                    br
+                    |   include Databound
+                    br
+                    br
+                    |   def model
+                    br
+                    |     User
+                    br
+                    |   end
+                    br
+                    | end
+
+                .step
+                  h4
+                    span.label.label-danger 5
+                    span.text
+                      |  Use it in the Javascript
+                  pre
+                    | var User = new Databound('/users');
+
+          .panel.panel-default
             #headingThree.panel-heading role="tab"
               h4.panel-title
                 a.collapsed aria-controls="collapseThree" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseThree"
                   | With require.js
             #collapseThree.panel-collapse.collapse aria-labelledby="headingThree" role="tabpanel"
               .panel-body
-                dl
-                  dt Download via <code>npm</code>
-                  dd
-                    pre
-                      | npm install databound
+                .step
+                  h4
+                    span.label.label-danger 1
+                    span.text  Gemfile
+                  pre
+                    | gem 'databound', '0.2.1'
 
-                dl
-                  dt Download via <code>bower</code>
-                  dd
-                    pre
-                      | bower install databound
+                .step
+                  h4
+                    span.label.label-danger 2
+                    span.text  Download Javascript part with <code>npm</code> or <code>bower</code>
+                  pre
+                    | npm install databound
+                  p OR
+                  pre
+                    | bower install databound
 
-                dl
-                  dt Use it
-                  dd
-                    pre
-                      | var Databound = require('databound');
+                .step
+                  h4
+                    span.label.label-danger 3
+                    span.text  Add a route to <code>config/routes.rb</code>
+                  pre
+                    | Rails.application.routes.draw do
+                    br
+                    |   databound :users
+                    br
+                    | end
+
+                .step
+                  h4
+                    span.label.label-danger 4 - optional
+                    span.text
+                      |  Controller is autogenerated from route
+                  p But if you already have a controller, you can include Databound and specify the model yourself.
+                  pre
+                    | class UsersController < ApplicationController
+                    br
+                    |   include Databound
+                    br
+                    br
+                    |   def model
+                    br
+                    |     User
+                    br
+                    |   end
+                    br
+                    | end
+
+                .step
+                  h4
+                    span.label.label-danger 5
+                    span.text
+                      |  Require and use it in the Javascript
+                  pre
+                    | var Databound = require('databound');
+                    br
+                    | var User = new Databound('/users');

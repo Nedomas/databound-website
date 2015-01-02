@@ -2,7 +2,6 @@ doctype html
 html
   head
     title Databound
-    meta name="viewport" content="initial-scale=1"
     = stylesheet_link_tag "application", media: "all"
 
     script src='//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.min.js'
@@ -14,4 +13,10 @@ html
   body
     .container-fluid
       = yield
-    footer.footer
+    footer.footer.text-center
+      p.lead
+        | Thanks for scrolling all the way down!
+      p
+        a.btn.btn-danger href='#'
+          span.glyphicon.glyphicon-star
+          | Fork on Github

@@ -28,17 +28,19 @@ body {
   .logo {
     background: url('logobig.png') center no-repeat;
     background-size: 400px;
-    height: 200px;
+    height: 150px;
   }
 
   .description {
     font-size: 1.3em;
     padding-bottom: 3em;
 
-    .brand {
-      color: $main;
-    }
   }
+}
+
+.brand {
+  font-weight: 600;
+  color: $main;
 }
 
 .showoff {
@@ -104,12 +106,11 @@ body {
 .dark {
   background-color: $dark-bg;
   color: #fff;
-  padding-top: 2em;
-  padding-bottom: 2em;
 }
 
-.features {
+.api {
   border-top: 15px solid $main;
+  padding-top: 1em;
   margin-top: 5em;
 
   h2 {
@@ -120,16 +121,31 @@ body {
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
   }
 
-  .example {
-    margin-top: 1em;
-  }
-
   .more-api {
     font-size: 1.5em;
     margin: 1.5em;
     padding: .5em 1em;
   }
+}
 
+.features {
+  padding-bottom: 4em;
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.example {
+  margin-top: 1em;
+}
+
+.support {
+  padding-bottom: 2em;
+
+  h2 {
+    padding-top: 1em;
+  }
 }
 
 .installation {
@@ -163,6 +179,10 @@ h2 {
   padding-bottom: 1em;
 }
 
+.fork {
+  padding: 1em 1em 0;
+}
+
 .no-gutter {
   margin-left: 0;
   margin-right: 0;
@@ -171,6 +191,7 @@ h2 {
 }
 
 .footer {
+  padding: 2em;
   background-color: $dark-bg;
-  height: 100px;
+  color: #fff;
 }
