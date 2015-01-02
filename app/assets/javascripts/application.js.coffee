@@ -20,6 +20,7 @@ App = (->
   init = ->
     initEditors()
     bindRun()
+    startTracking()
 
   initEditors = ->
     _.each editors(), (editor, file) ->
@@ -69,6 +70,16 @@ App = (->
 
   bindRun = ->
     $('#run').on('click', run)
+
+  startTracking = ->
+    $(document).on 'click', 'a', (link) ->
+      analytics.track 'Clicked link',
+        text: $(link.target).text()
+        href: $(link.target).prop('href')
+
+    $(document).on 'click', 'button', (button) ->
+      analytics.track 'Clicked button',
+        text: $(button.target).text()
 
   return {
     init: init
