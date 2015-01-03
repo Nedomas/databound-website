@@ -12,7 +12,7 @@
       .description.text-center
         span.brand Databound
         span
-          |  exposes Ruby on Rails database to the Javascript side.
+          |  provides Javascript a simple CRUD API to the Ruby on Rails backend.
 
 .row
   .showoff
@@ -27,6 +27,8 @@
               a aria-controls="gemfile-tab" data-toggle="tab" href="#gemfile-tab" role="tab" Gemfile
             li role="presentation"
               a aria-controls="routes-tab" data-toggle="tab" href="#routes-tab" role="tab" config/routes.rb
+            li role="presentation"
+              a aria-controls="routes-tab" data-toggle="tab" href="#controller-tab" role="tab" users_controller.rb
             .run-area.text-right
               button.btn.btn-danger#run
                 span.glyphicon.glyphicon-play aria-hidden='true'
@@ -40,6 +42,8 @@
               .editor#gemfile
             #routes-tab.tab-pane role="tabpanel"
               .editor#routes
+            #controller-tab.tab-pane role="tabpanel"
+              .editor#controller
 
     .col-md-1.spacer.no-gutter.col-xs-1
     .col-md-4.col-xs-5

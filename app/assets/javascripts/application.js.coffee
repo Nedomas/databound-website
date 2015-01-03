@@ -39,7 +39,8 @@ App = (->
   SYNTAX_TYPES = {
     javascript: 'javascript',
     gemfile: 'ruby',
-    routes: 'ruby'
+    routes: 'ruby',
+    controller: 'ruby'
   }
 
   customize = (editor, file) ->
@@ -57,7 +58,7 @@ App = (->
   editors = ->
     result = {}
 
-    _.each ['javascript', 'gemfile', 'routes'], (file) ->
+    _.each ['javascript', 'gemfile', 'routes', 'controller'], (file) ->
       result[file] = window.ace.edit(file)
 
     result
