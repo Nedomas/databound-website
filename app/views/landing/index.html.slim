@@ -124,7 +124,7 @@
         h3 destroy
       .col-md-5
         pre
-          | User.destroy({ id: 15 }).then(function(resp) {
+          | User.destroy(15).then(function(resp) {
               if (resp.success) print('User no. 15 is now gone');
             });
 
@@ -168,7 +168,7 @@
             | <code>strict</code> setting:
         p
           | set <code>false</code> to make both dsl values and other values
-          | valid.
+          |  valid.
       .col-md-5
         strong Javascript
         pre
@@ -291,6 +291,29 @@
                 project.user_id == current_user.id
               end
             end
+
+.row.security
+  .container
+    .col-md-offset-2.col-md-8
+      .row.text-center
+        h2 Security
+      .row
+        .lead
+          p
+            strong Which parts can Javascript modify?
+          p
+            | Specify <a href='#permitted_columns'><code>permitted_columns</code></a>.
+          p
+            | By default - all table columns. This is to be changed in the next major release.
+
+          p
+            strong How to protect the scope of the modifiable records?
+          p
+            | Use <a href='#permit_update_destroy'><code>permit_update_destroy?</code></a> to check permissions.
+          p
+            strong Which parts can Javascript show?
+          p
+            | Use <a href='https://github.com/rails-api/active_model_serializers' target='_blank'>Active Model Serializers</a> to serialize the record.
 
 .row.support
   .container
@@ -507,26 +530,3 @@
                     | var Databound = require('databound');
                     br
                     | var User = new Databound('/users');
-
-.row.security
-  .container
-    .col-md-offset-2.col-md-8
-      .row.text-center
-        h2 Security
-      .row
-        .lead
-          p
-            strong Which parts can Javascript modify?
-          p
-            | Specify <a href='#permitted_columns'><code>permitted_columns</code></a>.
-          p
-            | By default - all table columns.
-
-          p
-            strong How to protect the scope of the modifiable records?
-          p
-            | Use <a href='#permit_update_destroy'><code>permit_update_destroy?</code></a> to check permissions.
-          p
-            strong Which parts can Javascript show?
-          p
-            | Use <a href='https://github.com/rails-api/active_model_serializers' target='_blank'>Active Model Serializers</a> to serialize the record.
