@@ -237,7 +237,7 @@
 
     .row.example
       .col-md-offset-2.col-md-3.text-left
-        h3 Permitted columns
+        h3#permitted_columns Permitted columns
         p
           | By default the permitted columns are all the columns in the
           |  database table.
@@ -280,6 +280,7 @@
           p Ruby <span class="label label-default">2.0+</span>
           p It can work with <strong>Angular</strong> as a better solution over <strong>ngResource</strong>.
           p ActiveRecord or Mongoid
+          p Works with <a href='https://github.com/rails-api/active_model_serializers' target='_blank'>Active Model Serializers</a>.
           p Chrome <span class="label label-default">any</span>, Firefox <span class="label label-default">any</span>, Opera <span class="label label-default">any</span>, IE <span class="label label-default">8+</span>
 
           p
@@ -481,3 +482,20 @@
                     | var Databound = require('databound');
                     br
                     | var User = new Databound('/users');
+
+.row.security
+  .container
+    .col-md-offset-2.col-md-8
+      .row.text-center
+        h2 Security
+      .row
+        .lead
+          p
+            strong Which parts can Javascript modify?
+          p
+            | Specify <a href='#permitted_columns'><code>permitted_columns</code></a>.
+
+          p
+            strong Which parts can Javascript show?
+          p
+            | Use <a href='https://github.com/rails-api/active_model_serializers' target='_blank'>Active Model Serializers</a> to serialize the record.
