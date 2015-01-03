@@ -12,8 +12,7 @@
       .description.text-center
         span.brand Databound
         span
-          |  exposes database ORM to the Javascript
-          |  and works out of the box with Ruby on Rails, ActiveRecord and Mongoid.
+          |  exposes Ruby on Rails database to the Javascript side.
 
 .row
   .showoff
@@ -78,10 +77,8 @@
       .col-md-5
         pre
           | User.where({ name: 'John' }).then(function(users) {
-          br
-          |  print('You are called John');
-          br
-          | });
+             print('Users called John');
+            });
 
     .row.example
       .col-md-offset-1.col-md-3.text-right
@@ -89,10 +86,8 @@
       .col-md-5
         pre
           | User.find(15).then(function(user) {
-          br
-          |  print('User no. 15: ' + user.name);
-          br
-          | });
+             print('User no. 15: ' + user.name);
+            });
 
     .row.example
       .col-md-offset-1.col-md-3.text-right
@@ -111,10 +106,8 @@
       .col-md-5
         pre
           | User.create({ name: 'Peter' }).then(function(user) {
-          br
-          |  print('I am ' + user.name + ' from database');
-          br
-          | });
+             print('I am ' + user.name + ' from database');
+            });
 
     .row.example
       .col-md-offset-1.col-md-3.text-right
@@ -122,12 +115,9 @@
       .col-md-5
         pre
           | User.update({ id: 15, name: 'Nikki' }).then(function(user) {
-          br
-          |  // I'm not Peter anymore, I'm Nikki
-          br
-          |  print("I'm not Peter anymore, I'm " + user.name);
-          br
-          | });
+              // I'm not Peter anymore, I'm Nikki
+              print("I'm not Peter anymore, I'm " + user.name);
+            });
 
     .row.example
       .col-md-offset-1.col-md-3.text-right
@@ -135,10 +125,8 @@
       .col-md-5
         pre
           | User.destroy({ id: 15 }).then(function(resp) {
-          br
-          |  if (resp.success) print('User no. 15 is now gone');
-          br
-          | });
+              if (resp.success) print('User no. 15 is now gone');
+            });
 
     .row
       .col-md-10.col-md-offset-1.text-center
@@ -321,7 +309,7 @@
                     span.label.label-danger 1
                     span.text  Gemfile
                   pre
-                    | gem 'databound', '0.2.1'
+                    | gem 'databound', '1.0.1'
 
                 .step
                   h4
@@ -381,7 +369,7 @@
                     span.label.label-danger 1
                     span.text  Gemfile
                   pre
-                    | gem 'databound', '0.2.1'
+                    | gem 'databound', '1.0.1'
 
                 .step
                   h4
@@ -441,7 +429,7 @@
                     span.label.label-danger 1
                     span.text  Gemfile
                   pre
-                    | gem 'databound', '0.2.1'
+                    | gem 'databound', '1.0.1'
 
                 .step
                   h4

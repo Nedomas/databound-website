@@ -31,7 +31,7 @@ gem 'spring',        group: :development
 
 gem 'slim'
 gem 'twitter-bootstrap-rails'
-gem 'databound', github: 'Nedomas/databound-rails'
+gem 'databound'
 gem 'pry'
 gem 'pry-stack_explorer'
 gem 'browserify-rails'
