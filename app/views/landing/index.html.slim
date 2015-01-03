@@ -267,6 +267,31 @@
               end
             end
 
+    .row.example
+      .col-md-offset-2.col-md-3.text-left
+        h3#permit_update_destroy Permitted scope
+        p
+          | You can check for the record edit rights.
+        p
+          strong
+            | It will raise an error if <code>permit_update_destroy?</code> block resolves to false.
+
+      .col-md-5
+        pre
+          | class ProjectsController < ApplicationController
+              include Databound
+
+              private
+
+              def model
+                Project
+              end
+
+              permit_update_destroy? do |project|
+                project.user_id == current_user.id
+              end
+            end
+
 .row.support
   .container
     .col-md-offset-2.col-md-8
@@ -497,6 +522,10 @@
           p
             | By default - all table columns.
 
+          p
+            strong How to protect the scope of the modifiable records?
+          p
+            | Use <a href='#permit_update_destroy'><code>permit_update_destroy?</code></a> to check permissions.
           p
             strong Which parts can Javascript show?
           p
