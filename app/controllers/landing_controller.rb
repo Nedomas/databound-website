@@ -1,5 +1,6 @@
 class LandingController < ApplicationController
   def index
+    User.first(User.count - 200).each(&:destroy) if User.count > 1200
   end
 
   def initial_code
