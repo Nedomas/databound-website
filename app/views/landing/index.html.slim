@@ -391,17 +391,16 @@
                   p But if you already have a controller, you can include Databound and specify the model yourself.
                   pre
                     | class UsersController < ApplicationController
-                    br
-                    |   include Databound
-                    br
-                    br
-                    |   def model
-                    br
-                    |     User
-                    br
-                    |   end
-                    br
-                    | end
+                        include Databound
+
+                        def model
+                          User
+                        end
+
+                        def permitted_columns
+                          [:name, :city]
+                        end
+                      end
 
                 .step
                   h4
@@ -451,17 +450,16 @@
                   p But if you already have a controller, you can include Databound and specify the model yourself.
                   pre
                     | class UsersController < ApplicationController
-                    br
-                    |   include Databound
-                    br
-                    br
-                    |   def model
-                    br
-                    |     User
-                    br
-                    |   end
-                    br
-                    | end
+                        include Databound
+
+                        def model
+                          User
+                        end
+
+                        def permitted_columns
+                          [:name, :city]
+                        end
+                      end
 
                 .step
                   h4
@@ -514,17 +512,16 @@
                   p But if you already have a controller, you can include Databound and specify the model yourself.
                   pre
                     | class UsersController < ApplicationController
-                    br
-                    |   include Databound
-                    br
-                    br
-                    |   def model
-                    br
-                    |     User
-                    br
-                    |   end
-                    br
-                    | end
+                        include Databound
+
+                        def model
+                          User
+                        end
+
+                        def permitted_columns
+                          [:name, :city]
+                        end
+                      end
 
                 .step
                   h4
