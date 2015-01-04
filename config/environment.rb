@@ -4,4 +4,4 @@ require File.expand_path('../application', __FILE__)
 # Initialize the Rails application.
 Rails.application.initialize!
 
-DATABOUND_VERSION = '1.1.0'
+DATABOUND_VERSION = '2.0.1'

@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   # generates UsersController if one does not exist
-  databound :users
+  databound :users, permitted_columns: [:name, :city]
 end
