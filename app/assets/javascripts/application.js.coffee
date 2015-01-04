@@ -52,7 +52,7 @@ App = (->
       if file == 'javascript'
         run()
 
-      if _.include(['gemfile', 'routes'], file)
+      if _.include(['gemfile', 'routes', 'controller'], file)
         editor.setReadOnly(true)
 
   editors = ->
