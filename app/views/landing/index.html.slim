@@ -146,15 +146,14 @@
       .col-md-offset-2.col-md-3.text-left
         h3#permitted_columns Permitted columns
         p
-          | By default the permitted columns are all the columns in the
-          |  database table. This will change in the next major release.
+          | By default no columns are modifiable.
         p
           strong
-            | It will raise an error if other column is requested.
+            | It will raise an error if an unpermitted column is requested.
         p
-          | All columns are allowed if <code>:all</code> is specified.
+          | All table columns are allowed if <code>:table_columns</code> is specified.
         p
-          | It can be used with DSL to convert non-existing field into another.
+          | <code>:all</code> can be used with DSL to convert non-existing field into another.
         p
           | ActiveRecord and Mongoid supported.
 
@@ -172,6 +171,14 @@
               def pemitted_columns
                 [:name, :email]
               end
+            end
+
+            # if you don't have a controller
+            # you can also specify permitted columns in
+
+            # config/routes.rb
+            Rails.application.routes.draw do
+              databound :users, permitted_columns: [:name, :city]
             end
 
     .row.example
@@ -296,7 +303,7 @@
           p
             | Specify <a href='#permitted_columns'><code>permitted_columns</code></a>.
           p
-            | By default - all table columns. This is to be changed in the next major release.
+            | By default - no columns are modifiable.
 
           p
             strong How to secure the relation values?
