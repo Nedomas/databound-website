@@ -379,7 +379,7 @@
                   pre
                     | Rails.application.routes.draw do
                     br
-                    |   databound :users
+                    |   databound :users, permitted_columns: [:name, :city]
                     br
                     | end
 
@@ -438,7 +438,7 @@
                   pre
                     | Rails.application.routes.draw do
                     br
-                    |   databound :users
+                    |   databound :users, permitted_columns: [:name, :city]
                     br
                     | end
 
@@ -500,7 +500,7 @@
                   pre
                     | Rails.application.routes.draw do
                     br
-                    |   databound :users
+                    |   databound :users, permitted_columns: [:name, :city]
                     br
                     | end
 
