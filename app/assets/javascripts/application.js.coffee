@@ -51,6 +51,7 @@ App = (->
     ).then ->
       if file == 'javascript'
         run()
+        startEditTracking()
 
       if _.include(['gemfile', 'routes', 'controller'], file)
         editor.setReadOnly(true)
@@ -82,6 +83,17 @@ App = (->
     $(document).on 'click', 'button', (button) ->
       analytics.track 'Clicked button',
         text: $(button.target).text()
+        js_code: editors().javascript.getValue()
+
+  startEditTracking = ->
+    editors().javascript.getSession().on 'change', _.debounce(logEdit, 5000,
+      leading: false
+      trailing: true
+    )
+
+  logEdit = (e) ->
+    analytics.track 'Edited Javascript',
+      js_code: editors().javascript.getValue()
 
   return {
     init: init
