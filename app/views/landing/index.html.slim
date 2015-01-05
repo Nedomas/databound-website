@@ -294,33 +294,31 @@
 .row.security
   .container
     .col-md-offset-2.col-md-8
-      .row.text-center
+      .row.bs-callout.bs-callout-danger
         h2 Security
-      .row
-        .lead
-          p
-            strong Which parts can Javascript modify?
-          p
-            | Specify <a href='#permitted_columns'><code>permitted_columns</code></a>.
-          p
-            | By default - no columns are modifiable.
+        p
+          strong Which parts can Javascript modify?
+        p
+          | Specify <a href='#permitted_columns'><code>permitted_columns</code></a>.
+        p
+          | By default - no columns are modifiable.
 
-          p
-            strong How to secure the relation values?
-          p
-            | You can use <a href='#dsl'><code>dsl(:your_column, :expected_value)</code></a> to only allow certain dsl values
-            |  and convert them to relation ids in the backend.
+        p
+          strong How to secure the relation values?
+        p
+          | You can use <a href='#dsl'><code>dsl(:your_column, :expected_value)</code></a> to only allow certain dsl values
+          |  and convert them to relation ids in the backend.
 
-          p
-            strong How to protect the scope of the modifiable records?
-          p
-            | Use <a href='#permit_update_destroy'><code>permit_update_destroy?</code></a> to check permissions.
-          p
-            strong Which parts can Javascript show?
-          p
-            | Use <a href='https://github.com/rails-api/active_model_serializers' target='_blank'>Active Model Serializers</a> to serialize the record.
-          p
-            | If you don't want to use that, you can overwrite <code>as_json</code> method on the model.
+        p
+          strong How to protect the scope of the modifiable records?
+        p
+          | Use <a href='#permit_update_destroy'><code>permit_update_destroy?</code></a> to check permissions.
+        p
+          strong Which parts can Javascript show?
+        p
+          | Use <a href='https://github.com/rails-api/active_model_serializers' target='_blank'>Active Model Serializers</a> to serialize the record.
+        p
+          | If you don't want to use that, you can overwrite <code>as_json</code> method on the model.
 
 .row.support
   .container
@@ -346,6 +344,11 @@
             small
               em
                 |  <span class="label label-default">(should work with any version)</span>
+          p
+            | <a href='http://jquery.com' target='_blank'>jQuery</a>
+            small
+              em
+                |  <span class="label label-default">1.5+</span>
 
 .row.installation#installation
   .container
@@ -409,12 +412,19 @@
                   h4
                     span.label.label-danger 5
                     span.text
-                      |  Install <a href='https://lodash.com' target='_blank'>Lo-Dash</a>
-                  p Or include it from CDN.
-                  pre
-                    = "<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js'>"
-                    br
-                    = "</script>"
+                      |  Install dependencies
+                  p Easiest way is to use the official Ruby gems or include them from CDNs.
+                  h5
+                    strong Lo-Dash
+                  p
+                    | <code><a href='https://github.com/rh/lodash-rails' target='_blank'>lodash-rails gem</a></code>
+                    |  or <a href='http://cdnjs.com/libraries/lodash.js' target='_blank'>CDN</a>
+
+                  h5
+                    strong jQuery (already installed by default on Rails)
+                  p
+                    | <code><a href='https://github.com/rails/jquery-rails' target='_blank'>jquery-rails gem</a></code>
+                    |  or <a href='https://code.jquery.com' target='_blank'>CDN</a>
 
                 .step
                   h4
@@ -479,10 +489,19 @@
                   h4
                     span.label.label-danger 5
                     span.text
-                      |  Install <a href='https://lodash.com' target='_blank'>Lo-Dash</a>
-                  p Or include it from CDN.
+                      |  Install dependencies
+                  p Include them from CDNs.
+                  h5
+                    strong <a href='https://lodash.com' target='_blank'>Lo-Dash</a>
                   pre
                     = "<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js'>"
+                    br
+                    = "</script>"
+
+                  h5
+                    strong <a href='https://jquery.com' target='_blank'>jQuery</a> (already installed by default on Rails)
+                  pre
+                    = "<script src='https://code.jquery.com/jquery-2.1.3.min.js'>"
                     br
                     = "</script>"
 
