@@ -319,6 +319,8 @@
             strong Which parts can Javascript show?
           p
             | Use <a href='https://github.com/rails-api/active_model_serializers' target='_blank'>Active Model Serializers</a> to serialize the record.
+          p
+            | If you don't want to use that, you can overwrite <code>as_json</code> method on the model.
 
 .row.support
   .container
@@ -333,13 +335,14 @@
           p Ruby <span class="label label-default">2.0+</span>
           p It can work with <strong>Angular</strong> as a better solution over <strong>ngResource</strong>.
           p ActiveRecord or Mongoid
-          p Works with <a href='https://github.com/rails-api/active_model_serializers' target='_blank'>Active Model Serializers</a>.
+          p <a href='https://github.com/rails-api/rails-api' target='_blank'>Rails API</a>
+          p <a href='https://github.com/rails-api/active_model_serializers' target='_blank'>Active Model Serializers</a>
           p Chrome <span class="label label-default">any</span>, Firefox <span class="label label-default">any</span>, Opera <span class="label label-default">any</span>, IE <span class="label label-default">8+</span>
 
           p
             strong Depends on:
           p
-            | Lodash
+            | <a href='https://lodash.com' target='_blank'>Lo-Dash</a>
             small
               em
                 |  <span class="label label-default">(should work with any version)</span>
@@ -406,6 +409,17 @@
                   h4
                     span.label.label-danger 5
                     span.text
+                      |  Install <a href='https://lodash.com' target='_blank'>Lo-Dash</a>
+                  p Or include it from CDN.
+                  pre
+                    = "<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js'>"
+                    br
+                    = "</script>"
+
+                .step
+                  h4
+                    span.label.label-danger 6
+                    span.text
                       |  Use it in the Javascript
                   pre
                     | var User = new Databound('/users');
@@ -464,6 +478,17 @@
                 .step
                   h4
                     span.label.label-danger 5
+                    span.text
+                      |  Install <a href='https://lodash.com' target='_blank'>Lo-Dash</a>
+                  p Or include it from CDN.
+                  pre
+                    = "<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js'>"
+                    br
+                    = "</script>"
+
+                .step
+                  h4
+                    span.label.label-danger 6
                     span.text
                       |  Use it in the Javascript
                   pre
@@ -530,5 +555,4 @@
                       |  Require and use it in the Javascript
                   pre
                     | var Databound = require('databound');
-                    br
-                    | var User = new Databound('/users');
+                      var User = new Databound('/users');
