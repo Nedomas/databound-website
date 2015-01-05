@@ -24,11 +24,11 @@
             li.active role="presentation"
               a aria-controls="javascript-tab" data-toggle="tab" href="#javascript-tab" role="tab" JavaScript
             li role="presentation"
-              a aria-controls="gemfile-tab" data-toggle="tab" href="#gemfile-tab" role="tab" Gemfile
-            li role="presentation"
               a aria-controls="routes-tab" data-toggle="tab" href="#routes-tab" role="tab" config/routes.rb
             li role="presentation"
-              a aria-controls="routes-tab" data-toggle="tab" href="#controller-tab" role="tab" users_controller.rb
+              a aria-controls="controller-tab" data-toggle="tab" href="#controller-tab" role="tab" users_controller.rb
+            li role="presentation"
+              a aria-controls="gemfile-tab" data-toggle="tab" href="#gemfile-tab" role="tab" Gemfile
             .run-area.text-right
               button.btn.btn-danger#run
                 span.glyphicon.glyphicon-play aria-hidden='true'
@@ -38,12 +38,12 @@
           .tab-content
             #javascript-tab.tab-pane.active role="tabpanel"
               .editor#javascript
-            #gemfile-tab.tab-pane role="tabpanel"
-              .editor#gemfile
             #routes-tab.tab-pane role="tabpanel"
               .editor#routes
             #controller-tab.tab-pane role="tabpanel"
               .editor#controller
+            #gemfile-tab.tab-pane role="tabpanel"
+              .editor#gemfile
 
     .col-md-1.spacer.no-gutter.col-xs-1
     .col-md-4.col-xs-5
