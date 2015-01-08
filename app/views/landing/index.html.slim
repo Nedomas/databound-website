@@ -144,7 +144,7 @@
 
     .row.example
       .col-md-offset-2.col-md-3.text-left
-        h3#permitted_columns Permitted columns
+        h3#columns Columns
         p
           | By default no columns are modifiable.
         p
@@ -160,16 +160,9 @@
       .col-md-5
         pre
           | class UsersController < ApplicationController
-              include Databound
-
-              private
-
-              def model
-                User
-              end
-
-              def pemitted_columns
-                [:name, :email]
+              databound do
+                model :user
+                columns :name, :city
               end
             end
 
@@ -178,31 +171,38 @@
 
             # config/routes.rb
             Rails.application.routes.draw do
-              databound :users, permitted_columns: [:name, :city]
+              databound :users, columns: [:name, :city]
             end
 
     .row.example
       .col-md-offset-2.col-md-3.text-left
-        h3#permit_update_destroy Permitted scope
+        h3#permit Permit actions
         p
           | You can check for the record edit rights.
         p
           strong
-            | It will raise an error if <code>permit_update_destroy?</code> block resolves to false.
+            | It will raise an error if <code>permit</code> block resolves to false.
+        p
+          strong CRUD actions are supported:
+          p
+            code create
+          p
+            code read
+          p
+            code update
+          p
+            code destroy
 
       .col-md-5
         pre
           | class ProjectsController < ApplicationController
-              include Databound
+              databound do
+                model :project
+                columns :name, :city
 
-              private
-
-              def model
-                Project
-              end
-
-              permit_update_destroy? do |project|
-                project.user_id == current_user.id
+                permit(:update, :destroy) do |params, record|
+                  record.user_id == current_user.id
+                end
               end
             end
 
@@ -232,22 +232,41 @@
         strong app/controllers/projects_controller.rb
         pre
           | class ProjectsController < ApplicationController
-              include Databound
+              databound do
+                model :project
+                columns :title, :user_id
 
-              private
-
-              def model
-                Project
+                dsl(:user_id, :current) do |params|
+                  current_user.id
+                end
               end
+            end
 
-              dsl(:user_id, :current) do
-                current_user.id
+    .row.example
+      .col-md-offset-2.col-md-3.text-left
+        h3#model Model
+        p
+          | You can specify model both in controller and in <code>routes.rb</code>.
+
+      .col-md-5
+        pre
+          | class UsersController < ApplicationController
+              databound do
+                model :project
               end
+            end
 
-              # or
+            # if you don't have a controller
+            # you can also specify permitted columns in
 
-              dsl(:user_id, :current, strict: false) do |params|
-                current_user.id
+            # config/routes.rb
+            Rails.application.routes.draw do
+              databound :users, model: :project
+            end
+
+            # you can also specify it in this style
+            class UsersController < ApplicationController
+              databound(:project) do
               end
             end
 
@@ -299,7 +318,7 @@
         p
           strong Which parts can Javascript modify?
         p
-          | Specify <a href='#permitted_columns'><code>permitted_columns</code></a>.
+          | Specify <a href='#columns'><code>columns</code></a>.
         p
           | By default - no columns are modifiable.
 
@@ -310,41 +329,36 @@
           |  and convert them to relation ids in the backend.
 
         p
-          strong How to protect the scope of the modifiable records?
+          strong How to protect the scope of the records?
         p
           | If you need a reference to the record being modified, use
-          |  <a href='#permit_update_destroy'><code>permit_update_destroy?</code></a>.
+          |  <a href='#permit'><code>permit</code></a>.
           | It will give you a parsed record.
         p
-          | It also works with 3rd party libraries. You can override <code>create</code>,
-          |  <code>update</code>, <code>destroy</code> and <code>where</code>
-          |  methods on your controller.
+          | It also works with 3rd party libraries.
         pre
           | class ProjectsController < ApplicationController
-              include Databound
+              databound do
+                model :project
+                columns :name, :city
 
-              permit_update_destroy? do |record|
-                record.client_id == current_client_id
-              end
+                # CanCanCan gem
+                permit(:create) do
+                  authorize! :create, current_user
+                end
 
-              # CanCanCan gem
-              def destroy
-                authorize! :destroy, current_user
-                super
-              end
+                # Pundit
+                permit(:update) do
+                  authorize current_user
+                end
 
-              # Pundit
-              def destroy
-                authorize current_user
-                super
-              end
-
-              # Plain Ruby
-              def destroy
-                raise 'Not permitted' unless current_user.god?
-                super
+                # Plain Ruby
+                permit(:destroy) do
+                  current_user.god?
+                end
               end
             end
+
         p
           strong Which parts can Javascript show?
         p
@@ -425,7 +439,7 @@
                   pre
                     | Rails.application.routes.draw do
                     br
-                    |   databound :users, permitted_columns: [:name, :city]
+                    |   databound :users, columns: [:name, :city]
                     br
                     | end
 
@@ -437,14 +451,9 @@
                   p But if you already have a controller, you can include Databound and specify the model yourself.
                   pre
                     | class UsersController < ApplicationController
-                        include Databound
-
-                        def model
-                          User
-                        end
-
-                        def permitted_columns
-                          [:name, :city]
+                        databound do
+                          model :user
+                          columns :name, :city
                         end
                       end
 
@@ -502,7 +511,7 @@
                   pre
                     | Rails.application.routes.draw do
                     br
-                    |   databound :users, permitted_columns: [:name, :city]
+                    |   databound :users, columns: [:name, :city]
                     br
                     | end
 
@@ -514,14 +523,9 @@
                   p But if you already have a controller, you can include Databound and specify the model yourself.
                   pre
                     | class UsersController < ApplicationController
-                        include Databound
-
-                        def model
-                          User
-                        end
-
-                        def permitted_columns
-                          [:name, :city]
+                        databound do
+                          model :user
+                          columns :name, :city
                         end
                       end
 
@@ -584,7 +588,7 @@
                   pre
                     | Rails.application.routes.draw do
                     br
-                    |   databound :users, permitted_columns: [:name, :city]
+                    |   databound :users, columns: [:name, :city]
                     br
                     | end
 
@@ -596,14 +600,9 @@
                   p But if you already have a controller, you can include Databound and specify the model yourself.
                   pre
                     | class UsersController < ApplicationController
-                        include Databound
-
-                        def model
-                          User
-                        end
-
-                        def permitted_columns
-                          [:name, :city]
+                        databound do
+                          model :user
+                          columns :name, :city
                         end
                       end
 
