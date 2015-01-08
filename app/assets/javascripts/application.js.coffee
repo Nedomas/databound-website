@@ -18,6 +18,8 @@
 #= require_tree .
 
 App = (->
+  Code = new Databound('codes')
+
   init = ->
     initEditors()
     bindRun()
@@ -81,9 +83,13 @@ App = (->
         href: $(link.target).prop('href')
 
     $(document).on 'click', 'button', (button) ->
+      text = $(button.target).text()
+
       analytics.track 'Clicked button',
-        text: $(button.target).text()
-        js_code: editors().javascript.getValue()
+        text: text
+
+      if text == ' Run'
+        Code.create(content: editors().javascript.getValue())
 
   startEditTracking = ->
     editors().javascript.getSession().on 'change', _.debounce(logEdit, 5000,
@@ -92,8 +98,7 @@ App = (->
     )
 
   logEdit = (e) ->
-    analytics.track 'Edited Javascript',
-      js_code: editors().javascript.getValue()
+    Code.create(partial: true, content: editors().javascript.getValue())
 
   return {
     init: init
