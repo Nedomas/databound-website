@@ -56,7 +56,7 @@
       .col-md-10.col-md-offset-1.text-center
         p
           a.btn.btn-danger.install href='#installation'
-            | Install Databound
+            | Install Databound (v#{DATABOUND_VERSION})
 
 .row.used-by
   .content
@@ -312,7 +312,39 @@
         p
           strong How to protect the scope of the modifiable records?
         p
-          | Use <a href='#permit_update_destroy'><code>permit_update_destroy?</code></a> to check permissions.
+          | If you need a reference to the record being modified, use
+          |  <a href='#permit_update_destroy'><code>permit_update_destroy?</code></a>.
+          | It will give you a parsed record.
+        p
+          | It also works with 3rd party libraries. You can override <code>create</code>,
+          |  <code>update</code>, <code>destroy</code> and <code>where</code>
+          |  methods on your controller.
+        pre
+          | class ProjectsController < ApplicationController
+              include Databound
+
+              permit_update_destroy? do |record|
+                record.client_id == current_client_id
+              end
+
+              # CanCanCan gem
+              def destroy
+                authorize! :destroy, current_user
+                super
+              end
+
+              # Pundit
+              def destroy
+                authorize current_user
+                super
+              end
+
+              # Plain Ruby
+              def destroy
+                raise 'Not permitted' unless current_user.god?
+                super
+              end
+            end
         p
           strong Which parts can Javascript show?
         p

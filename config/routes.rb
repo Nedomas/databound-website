@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'landing#index'
   get 'landing/initial_code'
 
-  databound :users, permitted_columns: [:name, :city]
+  databound :users, columns: %i(name city)
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

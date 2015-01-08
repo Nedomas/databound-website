@@ -1,22 +1,11 @@
 # You can create your own controller with permissions
 class UsersController < ApplicationController
-  include Databound
+  databound do
+    model :user
+    columns :name, :email, :user_id
 
-  private
-
-  def model
-    User
-  end
-
-  def pemitted_columns
-    [:name, :email, :client_id]
-  end
-
-  dsl(:client_id, :current) do
-    current_client_id
-  end
-
-  permit_update_destroy? do |record|
-    record.client_id == current_client_id
+    permit(:update, :destroy) do |params, record|
+      record.user_id == current_user.id
+    end
   end
 end
