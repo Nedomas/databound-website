@@ -3,7 +3,7 @@
     .fork.text-right
       a.btn.btn-default.btn-sm href='https://github.com/Nedomas/databound' target='_blank'
         span.glyphicon.glyphicon-star
-        | Star on Github
+        |  Star on Github
 
 .row
   .col-md-8.col-md-offset-2
@@ -57,6 +57,7 @@
         p
           a.btn.btn-danger.install href='#installation'
             | Install Databound (v#{DATABOUND_VERSION})
+          h6.minimized 2.4K minimized
 
 .row.used-by
   .content
@@ -132,10 +133,13 @@
               if (resp.success) print('User no. 15 is now gone');
             });
 
-    .row
+    .row.more-api
       .col-md-10.col-md-offset-1.text-center
-        a.btn.btn-danger.more-api href='http://nedomas.github.io/databound/src/databound.html' target='_blank'
-          | More API docs
+        a.btn.btn-lg.btn-danger href='http://nedomas.github.io/databound/src/databound.html' target='_blank'
+          | ALL API DOCS
+        h6.whats-in-more
+          | <code>take</code> & <code>takeAll</code> methods,
+          |  <code>API_URL</code>, seed records and how to use it without jQuery.
 
 .row.features.dark
   .container
@@ -225,7 +229,9 @@
               user_id: 'current'
             });
 
-            Project.create(title: 'Ship').then(function(project) {
+            Project.create({ title: 'Ship' })
+              .then(function(project) {
+
               alert('Ship of current user: ' + project.user_id);
             });
 
@@ -284,7 +290,7 @@
         pre
           | User = new Databound('/users', { city: 'Miami' });
 
-            User.create(name: 'Nikki').then(function(user) {
+            User.create({ name: 'Nikki' }).then(function(user) {
               // Miami
               print(user.city);
             });
@@ -304,7 +310,7 @@
               { extra_where_scopes: [{ city: 'New york' }] }
             );
 
-            User.create(name: 'Nikki').then(function() {
+            User.create({ name: 'Nikki' }).then(function() {
               // ['Miami', 'New york']
               print(User.takeAll());
             });
