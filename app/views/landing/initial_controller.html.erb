@@ -2,10 +2,10 @@
 class UsersController < ApplicationController
   databound do
     model :user
-    columns :name, :email, :user_id
+    columns :name, :city
 
     permit(:update, :destroy) do |params, record|
-      record.user_id == current_user.id
+      record.id == current_user.id
     end
   end
 end
