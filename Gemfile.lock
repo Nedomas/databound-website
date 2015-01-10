@@ -41,7 +41,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    databound (3.0.3)
+    databound (3.1.0)
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.2.2)
@@ -62,7 +62,7 @@ GEM
       actionpack (>= 3.0.0)
     method_source (0.8.2)
     mime-types (2.4.3)
-    minitest (5.5.0)
+    minitest (5.5.1)
     multi_json (1.10.1)
     newrelic_rpm (3.9.9.275)
     pg (0.18.1)
@@ -74,7 +74,7 @@ GEM
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
     rack (1.5.2)
-    rack-test (0.6.2)
+    rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.1.8)
       actionmailer (= 4.1.8)
