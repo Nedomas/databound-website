@@ -1,7 +1,7 @@
 .row
   .container
     .fork.text-right
-      a.btn.btn-default.btn-sm href='https://github.com/Nedomas/databound' target='_blank'
+      a.btn.btn-default href='https://github.com/Nedomas/databound' target='_blank'
         span.glyphicon.glyphicon-star
         |  Star on Github
 
@@ -288,9 +288,9 @@
 
       .col-md-5
         pre
-          | User = new Databound('/users', { city: 'Miami' });
+          | MiamiUser = new Databound('/users', { city: 'Miami' });
 
-            User.create({ name: 'Nikki' }).then(function(user) {
+            MiamiUser.create({ name: 'Nikki' }).then(function(user) {
               // Miami
               print(user.city);
             });
