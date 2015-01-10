@@ -117,6 +117,6 @@ window.print = (content) ->
   browser().append($('<div>').html("#{content}"))
 
 window.onerror = (e) ->
-  print('ERROR: ' + e)
+  print(e)
 
 $(-> App.init())

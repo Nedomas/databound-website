@@ -57,7 +57,7 @@
         p
           a.btn.btn-danger.install href='#installation'
             | Install Databound (v#{DATABOUND_VERSION})
-          h6.minimized 2.4K minimized
+          h6.minimized 2.8K minimized
 
 .row.used-by
   .content
@@ -138,7 +138,7 @@
         a.btn.btn-lg.btn-danger href='http://nedomas.github.io/databound/src/databound.html' target='_blank'
           | ALL API DOCS
         h6.whats-in-more
-          | <code>take</code> & <code>takeAll</code> methods,
+          | <code>all</code>, <code>take</code> & <code>takeAll</code> methods,
           |  <code>API_URL</code>, seed records and how to use it without jQuery.
 
 .row.features.dark
@@ -275,6 +275,61 @@
               databound(:project) do
               end
             end
+
+    .row.example
+      .col-md-offset-2.col-md-3.text-left
+        h3 Friendly errors in development
+        p
+          | If <code>consider_all_requests_local</code>
+          |  is on,
+          |  <span class='brand'>Databound</span> will show friendly
+          |  errors to the Javascript.
+        p
+          | Its default is <code>true</code> in development and
+          |  <code>false</code> in production for Ruby on Rails.
+        p
+          strong Friendly error types:
+        p Unpermitted columns
+        p Permit violations
+        p ORM errors
+        /p
+        /  | It will not show standard <code>Something went wrong</code> in the
+        /  | production environment.
+
+      .col-md-5
+        strong config/environments/development.rb
+        pre
+          | Rails.application.configure do
+              config.consider_all_requests_local = true
+            end
+
+        strong Javascript
+        pre
+          | // Request includes unpermitted columns: email
+            User.update({ id: 15 email: 'hello@databound.me' })
+
+            // Request for destroy not permitted
+            User.destroy(15)
+
+            // Couldn't find record with id: 1
+            User.find(1)
+
+        strong config/environments/production.rb
+        pre
+          | Rails.application.configure do
+              config.consider_all_requests_local = false
+            end
+
+        strong Javascript
+        pre
+          | // Error in the backend with status 500
+            User.update({ id: 15 email: 'hello@databound.me' })
+
+            // Error in the backend with status 500
+            User.destroy(15)
+
+            // Couldn't find record with id: 1
+            User.find(1)
 
     .row.example
       .col-md-offset-2.col-md-3.text-left
