@@ -35,7 +35,7 @@ gem 'twitter-bootstrap-rails'
 gem 'databound', '3.1.2'
 gem 'pry'
 gem 'pry-stack_explorer'
-gem 'browserify-rails', '~> 0.7'
+gem 'browserify-rails', '0.5.1'
 gem 'faker'
 
 # Use ActiveModel has_secure_password

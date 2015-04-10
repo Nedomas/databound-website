@@ -30,7 +30,7 @@ GEM
     arel (5.0.1.20140414130214)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    browserify-rails (0.8.3)
+    browserify-rails (0.5.1)
       sprockets (~> 2.0)
     builder (3.2.2)
     coderay (1.1.0)
@@ -142,7 +142,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  browserify-rails (~> 0.7)
+  browserify-rails (= 0.5.1)
   coffee-rails (~> 4.0.0)
   databound (= 3.1.2)
   faker
