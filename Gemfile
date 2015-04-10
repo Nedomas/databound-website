@@ -32,7 +32,7 @@ gem 'meta-tags'
 
 gem 'slim'
 gem 'twitter-bootstrap-rails'
-gem 'databound', '3.1.2'
+gem 'databound', '3.1.3'
 gem 'pry'
 gem 'pry-stack_explorer'
 gem 'browserify-rails', '0.5.1'
