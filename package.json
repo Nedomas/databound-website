@@ -1,7 +1,6 @@
 {
   "name": "something",
   "devDependencies": {
-    "browserify": "~> 6.3",
     "coffeeify": "~> 0.6"
   },
   "license": "MIT",
@@ -9,6 +8,7 @@
     "node": ">= 0.10"
   },
   "dependencies": {
+    "browserify": "~> 6.3",
     "js-object-pretty-print": "^0.1.2"
   }
 }
